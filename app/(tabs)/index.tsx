@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Text, View ,Button,StyleSheet,TouchableOpacity} from 'react-native';
+import {Text, View ,Button,StyleSheet,TouchableOpacity,SafeAreaView} from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 export default function App(){
   const [click,setClick] = useState(0)
@@ -13,14 +13,22 @@ setClick(click+1)
   }
   return (
     <View style = {styles.alignment}>
+      <SafeAreaView></SafeAreaView>
 <Text style = {styles.mainHeading }>Digital Tasbeeh</Text>
 <Text style ={styles.subHeading} >Count your Azkaar</Text>
 <Text style={styles.count}>{click}</Text>
 <View style = {styles.buttonArrangement}>
-<Button  title = 'Add' onPress={change} color= 'orange'  />
-<Button title = 'clear' onPress={clear} color= 'orange'/>
+{/* <Button  title = 'Add' onPress={change} color= 'orange'  />
+<Button title = 'clear' onPress={clear} color= 'orange'/> */}
+ <TouchableOpacity style={styles.customButton} onPress={change}>
+    <Text style={styles.buttonText}>Add</Text>
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.customButton} onPress={clear}>
+    <Text style={styles.buttonText}>Clear</Text>
+  </TouchableOpacity>
 </View>
     </View>
+    
   );
 }
 
@@ -28,29 +36,43 @@ const styles = StyleSheet.create({
   alignment:{
     flex:1,
     alignItems: 'center',
-    marginTop:50
+    marginTop: 35,
+        backgroundColor: 'white'
   },
   mainHeading: {
-    fontSize:25,
+    marginTop:60,
+    fontSize:30,
     fontWeight:'bold',
     fontFamily:"monospace"
   },
   subHeading:{
-fontSize:20,
+fontSize:25,
 color: "orange",
 marginTop:10,
 fontWeight:'500'
   },
   count:{
-    fontSize:80,
+    fontSize:130,
     fontWeight:'bold',
-    marginTop: 70,
-    marginBottom:30
+    marginTop: 80,
+    marginBottom:60
   },
   buttonArrangement:{
 
 flexDirection:'row',
 gap: 10
-
-  }
+  },
+  customButton: {
+    backgroundColor: 'orange',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  
 })
